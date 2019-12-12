@@ -73,14 +73,14 @@ namespace RaporService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             RequestFormat = WebMessageFormat.Json,
-            UriTemplate = "getAdmin/id={id}")]
+            UriTemplate = "getAdmin/username={id}")]
         Admin LoginAdmin(string id);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             RequestFormat = WebMessageFormat.Json,
-            UriTemplate = "getWalikelas/id={id}")]
+            UriTemplate = "getWalikelas/username={id}")]
         WaliKelas GetWalikelas(string id);
 
         [OperationContract]

@@ -224,7 +224,7 @@ namespace RaporService
         public WaliKelas GetWalikelas(string id)
         {
             WaliKelas ad = new WaliKelas();
-            SqlCommand cmd = new SqlCommand("select * from walikelas where Nama_Wali_Kelas = " + "'" + id + "'", conn);
+            SqlCommand cmd = new SqlCommand("select * from walikelas where Username_wk = " + "'" + id + "'", conn);
             //    SqlCommand sqlCommand = new SqlCommand("select * from pesanan where id = " + id, conn);
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
