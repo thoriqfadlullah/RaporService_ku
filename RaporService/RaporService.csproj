@@ -75,7 +75,7 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\RaporService - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\RaporServiceAzure.pubxml" />
     <None Include="Properties\PublishProfiles\RaporServiceIIS.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
