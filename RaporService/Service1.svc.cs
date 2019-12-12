@@ -290,6 +290,34 @@ namespace RaporService
             return dp;
         }
 
+        public List<Siswa> GetDataSiswa(string id)
+        {
+            List<Siswa> dp = new List<Siswa>();
+            SqlCommand cmd = new SqlCommand("select * from siswa where Nama_siswa = " + "'" + id + "'", conn);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Siswa pesan = new Siswa();
+                pesan.tempat_lahir = reader["Tempat_lahir"].ToString();
+                pesan.tgl_lahir = reader["Tanggal_lahir"].ToString();
+                pesan.id_kelas = reader["ID_kelas"].ToString();
+                pesan.nama_siswa = reader["Nama_siswa"].ToString();
+                pesan.id_siswa = reader["ID_siswa"].ToString();
+                pesan.id_walikelas = reader["ID_wali_kelas"].ToString();
+                pesan.alamat = reader["Alamat"].ToString();
+                pesan.nama_ibu = reader["Nama_Ibu"].ToString();
+                pesan.nomor_ortu = reader["Nomor_ortu"].ToString();
+                pesan.jenis_kelamin = reader["Jenis_kelamin"].ToString();
+                pesan.status_kawin = reader["status_kawin"].ToString();
+                pesan.nama_ayah = reader["Nama_ayah"].ToString();
+                pesan.nama_agama = reader["Nama_agama"].ToString();
+                dp.Add(pesan);
+            }
+            conn.Close();
+            return dp;
+        }
+
         public string AddDataKelas(Kelas dp)
         {
             SqlCommand cmd = new SqlCommand("insert into kelas(ID_Kelas,Nama_Kelas) values(" +

@@ -97,6 +97,13 @@ namespace RaporService
             UriTemplate = "getNilaiRapot/id={id}")]
         List<Rapot> GetNilaiRapot(string id);
 
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json,
+            UriTemplate = "getDataSiswa/nama={id}")]
+        List<Siswa> GetDataSiswa(string id);
+
         // add data kelas
         [OperationContract]
         [WebInvoke(Method = "POST",
