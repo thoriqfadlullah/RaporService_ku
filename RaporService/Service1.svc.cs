@@ -290,10 +290,31 @@ namespace RaporService
             return dp;
         }
 
-        public List<Siswa> GetDataSiswa(string id)
+        public List<Rapot> FilterSemester(string id)
+        {
+            List<Rapot> dp = new List<Rapot>();
+            SqlCommand cmd = new SqlCommand("select * from rapot where Semester = " + "'" + id + "'", conn);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Rapot pesan = new Rapot();
+                pesan.nilai = reader["Nilai"].ToString();
+                pesan.semester = reader["Semester"].ToString();
+                pesan.id_kelas = reader["ID_kelas"].ToString();
+                pesan.id_mapel = reader["ID_mapel"].ToString();
+                pesan.id_siswa = reader["ID_siswa"].ToString();
+                pesan.id_rapot = reader["ID_rapot"].ToString();
+                dp.Add(pesan);
+            }
+            conn.Close();
+            return dp;
+        }
+
+        public List<Siswa> SearchDataSiswa(string id)
         {
             List<Siswa> dp = new List<Siswa>();
-            SqlCommand cmd = new SqlCommand("select * from siswa where Nama_siswa = " + "'" + id + "'", conn);
+            SqlCommand cmd = new SqlCommand("select * from siswa where Nama_siswa LIKE " + "'" + id + "%'", conn);
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())

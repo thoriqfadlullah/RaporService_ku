@@ -101,8 +101,15 @@ namespace RaporService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             RequestFormat = WebMessageFormat.Json,
-            UriTemplate = "getDataSiswa/nama={id}")]
-        List<Siswa> GetDataSiswa(string id);
+            UriTemplate = "filterSemester/Semester={id}")]
+        List<Rapot> FilterSemester(string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json,
+            UriTemplate = "searchDataSiswa/nama={id}")]
+        List<Siswa> SearchDataSiswa(string id);
 
         // add data kelas
         [OperationContract]
