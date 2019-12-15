@@ -115,8 +115,8 @@ namespace RaporService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             RequestFormat = WebMessageFormat.Json,
-            UriTemplate = "filterSemesterv2/Semester={id}")]
-        List<ReportNilaiSiswa> FilterSemesterv2(string id);
+            UriTemplate = "filterSemesterv2/Semester={id}/kelas={kelas}")]
+        List<ReportNilaiSiswa> FilterSemesterv2(string id, string kelas);
 
         [OperationContract]
         [WebInvoke(Method = "GET",

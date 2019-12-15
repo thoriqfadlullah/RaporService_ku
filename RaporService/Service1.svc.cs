@@ -329,10 +329,10 @@ namespace RaporService
             return dp;
         }
 
-        public List<ReportNilaiSiswa> FilterSemesterv2(string id)
+        public List<ReportNilaiSiswa> FilterSemesterv2(string id, string kelas)
         {
             List<ReportNilaiSiswa> dp = new List<ReportNilaiSiswa>();
-            SqlCommand cmd = new SqlCommand("SELECT Nama_Mapel, Nilai, Semester FROM mapel INNER JOIN rapot ON mapel.ID_Mapel = rapot.ID_mapel where Semester = " + "'" + id + "'", conn);
+            SqlCommand cmd = new SqlCommand("SELECT Nama_Mapel, Nilai, Semester FROM mapel INNER JOIN rapot ON mapel.ID_Mapel = rapot.ID_mapel where Semester = " + "'" + id + "' and ID_kelas = " + "'" + kelas + "'", conn);
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
