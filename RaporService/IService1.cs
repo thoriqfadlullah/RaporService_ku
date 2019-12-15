@@ -108,6 +108,20 @@ namespace RaporService
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             RequestFormat = WebMessageFormat.Json,
+            UriTemplate = "reportNilaiSiswa/ids={id}")]
+        List<ReportNilaiSiswa> ReportNilaiSiswa(string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json,
+            UriTemplate = "filterSemesterv2/Semester={id}")]
+        List<ReportNilaiSiswa> FilterSemesterv2(string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json,
             UriTemplate = "searchDataSiswa/nama={id}")]
         List<Siswa> SearchDataSiswa(string id);
 
@@ -164,6 +178,13 @@ namespace RaporService
             RequestFormat = WebMessageFormat.Json,
             UriTemplate = "updatedatasiswa")]
         string updatedatasiswa(Siswa dp);
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+            ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json,
+            UriTemplate = "updateNilaiRapot")]
+        string updateNilaiRapot(Rapot dp);
     }
 
     [DataContract]
@@ -258,5 +279,16 @@ namespace RaporService
         public string passw_walikelas { get; set; }
         [DataMember]
         public string id_kelas { get; set; }
+    }
+
+    [DataContract]
+    public class ReportNilaiSiswa
+    {
+        [DataMember]
+        public string nama_mapel { get; set; }
+        [DataMember]
+        public string nilai { get; set; }
+        [DataMember]
+        public string semester { get; set; }
     }
 }

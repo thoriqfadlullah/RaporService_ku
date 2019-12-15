@@ -311,6 +311,42 @@ namespace RaporService
             return dp;
         }
 
+        public List<ReportNilaiSiswa> ReportNilaiSiswa(string id)
+        {
+            List<ReportNilaiSiswa> dp = new List<ReportNilaiSiswa>();
+            SqlCommand cmd = new SqlCommand("SELECT Nama_Mapel, Nilai, Semester FROM mapel INNER JOIN rapot ON mapel.ID_Mapel = rapot.ID_mapel where ID_siswa = " + "'" + id + "'", conn);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ReportNilaiSiswa pesan = new ReportNilaiSiswa();
+                pesan.nilai = reader["Nilai"].ToString();
+                pesan.semester = reader["Semester"].ToString();
+                pesan.nama_mapel = reader["Nama_Mapel"].ToString();
+                dp.Add(pesan);
+            }
+            conn.Close();
+            return dp;
+        }
+
+        public List<ReportNilaiSiswa> FilterSemesterv2(string id)
+        {
+            List<ReportNilaiSiswa> dp = new List<ReportNilaiSiswa>();
+            SqlCommand cmd = new SqlCommand("SELECT Nama_Mapel, Nilai, Semester FROM mapel INNER JOIN rapot ON mapel.ID_Mapel = rapot.ID_mapel where Semester = " + "'" + id + "'", conn);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                ReportNilaiSiswa pesan = new ReportNilaiSiswa();
+                pesan.nilai = reader["Nilai"].ToString();
+                pesan.semester = reader["Semester"].ToString();
+                pesan.nama_mapel = reader["Nama_Mapel"].ToString();
+                dp.Add(pesan);
+            }
+            conn.Close();
+            return dp;
+        }
+
         public List<Siswa> SearchDataSiswa(string id)
         {
             List<Siswa> dp = new List<Siswa>();
@@ -471,6 +507,24 @@ namespace RaporService
                 ", ID_wali_kelas='" + dp.id_walikelas + "', Alamat='" + dp.alamat + "'" + ", Nama_Ibu='" + dp.nama_ibu + "'" +
                 ", Nomor_ortu='" + dp.nomor_ortu + "', Jenis_kelamin='" + dp.jenis_kelamin + "'" + ", status_kawin='" + dp.status_kawin + "'" +
                 ", Nama_ayah='" + dp.nama_ayah + "', Nama_agama='" + dp.nama_agama + "'" + " where ID_siswa = " + "'" + dp.id_siswa + "'", conn);
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return "Data Berhasil Di Update";
+            }
+            catch (Exception ex)
+            {
+                return "Data Gagal Di Update : " + ex;
+            }
+        }
+
+        public string updateNilaiRapot(Rapot dp)
+        {
+            SqlCommand cmd = new SqlCommand("update rapot set Nilai='" + dp.nilai + "'" +
+                ", Semester='" + dp.semester + "', ID_kelas='" + dp.id_kelas + "', ID_mapel='" + dp.id_mapel + "'" +
+                ", ID_siswa='" + dp.id_siswa + "' where ID_rapot = " + "'" + dp.id_rapot + "'" + " and ID_mapel = " + "'" + dp.id_mapel + "'" + " and Semester = " + "'" + dp.semester + "'", conn);
             try
             {
                 conn.Open();
